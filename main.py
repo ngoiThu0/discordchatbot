@@ -127,13 +127,19 @@ replied_messages = {}
 active_channels = {}
 @bot.event
 async def on_message(message):
+    print(message.content)
     if message.author == bot.user and message.reference:
         replied_messages[message.reference.message_id] = message
-        if len(replied_messages) > 5:
-            oldest_message_id = min(replied_messages.keys())
-            del replied_messages[oldest_message_id]
+        # if len(replied_messages) > 5:
+        #     oldest_message_id = min(replied_messages.keys())
+        #     del replied_messages[oldest_message_id]
 
     if message.mentions:
+        if str(bot.user.id) in message.content:
+        # Loại bỏ mention từ tin nhắn
+            # print("bot id: ", bot.user.id)
+            message.content = message.content.replace(f"<@1187410837456048148>", "").strip()
+            print(message.content)
         for mention in message.mentions:
             message.content = message.content.replace(f'<@{mention.id}>', f'{mention.display_name}')
 
@@ -173,6 +179,7 @@ async def on_message(message):
 
         message_history[key] = message_history[key][-MAX_HISTORY:]
 
+
         search_results = await search(message.content)
 
         message_history[key].append({"role": "user", "content": message.content})
@@ -188,19 +195,19 @@ async def on_message(message):
         text_to_speech(response)
 
         # Join VC to give reponse!
-        author_voice_channel = None
-        if message.guild:  # Check if the message is from a guild (server)
-            author_member = message.guild.get_member(message.author.id)
-            if author_member and author_member.voice:
-                author_voice_channel = author_member.voice.channel
+        # author_voice_channel = None
+        # if message.guild:  # Check if the message is from a guild (server)
+        #     author_member = message.guild.get_member(message.author.id)
+        #     if author_member and author_member.voice:
+        #         author_voice_channel = author_member.voice.channel
 
-        if author_voice_channel:
-            # Rest of the code to play TTS in the voice channel
-            voice_channel = await author_voice_channel.connect()
-            voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source="tts_output.mp3"))
-            while voice_channel.is_playing():
-                await asyncio.sleep(1)
-            await voice_channel.disconnect()
+        # if author_voice_channel:
+        #     # Rest of the code to play TTS in the voice channel
+        #     voice_channel = await author_voice_channel.connect()
+        #     voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source="tts_output.mp3"))
+        #     while voice_channel.is_playing():
+        #         await asyncio.sleep(1)
+        #     await voice_channel.disconnect()
 
         # TTS, response to VC ends!
 
