@@ -4,6 +4,9 @@ import os
 app = Flask(__name__)
 
 # Your routes and other configurations go here
+@app.route('/')
+def index():
+    return 'Web này chạy chỉ để xài đồ free của heroku thôi-))!!!'
 
 if __name__ == "__main__":
     # Use the PORT environment variable if available, otherwise use 5000
