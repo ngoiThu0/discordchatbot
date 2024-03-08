@@ -513,7 +513,7 @@ async def support(ctx):
     # github_repo = config['Github']
 
     embed = discord.Embed(title="Support Information", color=0x03a64b)
-    embed.add_field(name="Discord Server", value=f"[Join Here]({invite_link})\nCheck out our Discord server for community discussions, support, and updates.", inline=False)
+    embed.add_field(name="Discord Server: 𝐓𝐫𝐢𝐚𝐧𝐠𝐮𝐥𝐮𝐦", value=f"[Join Here]({invite_link})\nCheck out our Discord server for community discussions, support, and updates.", inline=False)
     # embed.add_field(name="GitHub Repository", value=f"[GitHub Repo]({github_repo})\nExplore our GitHub repository for the source code, documentation, and contribution opportunities.", inline=False)
 
     await ctx.send(embed=embed)
