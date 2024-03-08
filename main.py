@@ -17,6 +17,9 @@ from dotenv import load_dotenv
 # Text to Speech
 from gtts import gTTS
 import pyttsx3
+from flask import Flask
+
+
 
 from bot_utilities.ai_utils import generate_response, generate_image_prodia, search, poly_image_gen, generate_gpt4_response, dall_e_gen, sdxl
 from bot_utilities.response_util import split_response, translate_to_en, get_random_prompt
@@ -26,6 +29,12 @@ from bot_utilities.replit_detector import detect_replit
 from bot_utilities.sanitization_utils import sanitize_prompt
 from model_enum import Model
 load_dotenv()
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return 'Hello, World!'
 
 # Set up the Discord bot
 intents = discord.Intents.all()
@@ -191,8 +200,8 @@ async def on_message(message):
                 await message.remove_reaction("🔎", bot.user)
         message_history[key].append({"role": "assistant", "name": personaname, "content": response})
 
-        # Generate a TTS file
-        text_to_speech(response)
+        # # Generate a TTS file
+        # text_to_speech(response)
 
         # Join VC to give reponse!
         # author_voice_channel = None
@@ -544,4 +553,5 @@ if detect_replit():
     from bot_utilities.replit_flask_runner import run_flask_in_thread
     run_flask_in_thread()
 if __name__ == "__main__":
+    app.run(debug=True)
     bot.run(TOKEN)
