@@ -28,6 +28,7 @@ from bot_utilities.config_loader import config, load_current_language, load_inst
 from bot_utilities.replit_detector import detect_replit
 from bot_utilities.sanitization_utils import sanitize_prompt
 from model_enum import Model
+import concurrent.futures
 load_dotenv()
 
 app = Flask(__name__)
@@ -552,6 +553,19 @@ async def on_command_error(ctx, error):
 if detect_replit():
     from bot_utilities.replit_flask_runner import run_flask_in_thread
     run_flask_in_thread()
+
+
+def run_both():
+    def run_flask():
+        app.run(debug=True)
+    
+    def run_discord():
+        bot.run(TOKEN)
+    
+    # Sử dụng concurrent.futures để chạy cả hai quy trình đồng thời
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.submit(run_flask)
+        executor.submit(run_discord)
+
 if __name__ == "__main__":
-    app.run(debug=True)
-    bot.run(TOKEN)
+    run_both()
