@@ -143,7 +143,7 @@ async def on_message(message):
         if str(bot.user.id) in message.content:
         # Loại bỏ mention từ tin nhắn
             # print("bot id: ", bot.user.id)
-            message.content = message.content.replace(f"<@1187410837456048148>", "").strip()
+            message.content = message.content.replace(f"<@{str(bot.user.id)}>", "").strip()
             print(message.content)
         for mention in message.mentions:
             message.content = message.content.replace(f'<@{mention.id}>', f'{mention.display_name}')
