@@ -16,7 +16,7 @@ LANGUAGE: vn # Specify the language code (check 'lang' folder for valid codes)
 INSTRUCTIONS: assist # Specify the instruction prompt to use (check 'instructions' folder for valid prompts)
 # To add custom prompts, create a .txt file like 'custom.txt' in `instructions` folder and set INSTRUCTIONS as 'custom'
 
-Discord: https://discord.gg/6MT3CZauT8
+Discord: https://discord.gg/triangulum
 Github: https://github.com/mishalhossin/Discord-AI-Chatbot
 
 TRIGGER:
@@ -31,7 +31,7 @@ DISABLE_PRESENCE: false
 PRESENCES:
   - How can I assist you?
   - Currently in {guild_count} guilds
-  - Support at https://discord.gg/6MT3CZauT8
+  - Support at https://discord.gg/triangulum
 # List of different presences to be used
 
 OCR_MODEL_URLS:
