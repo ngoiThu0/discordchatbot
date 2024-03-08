@@ -2,7 +2,7 @@
 #### Your Discord AI Companion!
 
 <div align="center">
-  <a href="https://discord.gg/6MT3CZauT8">
+  <a href="https://discord.gg/triangulum">
     <img src="https://discordapp.com/api/guilds/1110950079390547968/widget.png?style=banner2">
   </a>
 </div>
