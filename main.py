@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 # Text to Speech
 from gtts import gTTS
 import pyttsx3
-from flask import Flask
+# from flask import Flask
 
 
 
@@ -28,14 +28,9 @@ from bot_utilities.config_loader import config, load_current_language, load_inst
 from bot_utilities.replit_detector import detect_replit
 from bot_utilities.sanitization_utils import sanitize_prompt
 from model_enum import Model
-import concurrent.futures
+# import concurrent.futures
 load_dotenv()
 
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'Hello, World!'
 
 # Set up the Discord bot
 intents = discord.Intents.all()
@@ -555,17 +550,17 @@ if detect_replit():
     run_flask_in_thread()
 
 
-def run_both():
-    def run_flask():
-        app.run(debug=True)
+# def run_both():
+#     def run_flask():
+#         app.run(debug=True)
     
-    def run_discord():
-        bot.run(TOKEN)
+#     def run_discord():
+#         bot.run(TOKEN)
     
-    # Sử dụng concurrent.futures để chạy cả hai quy trình đồng thời
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.submit(run_flask)
-        executor.submit(run_discord)
+#     # Sử dụng concurrent.futures để chạy cả hai quy trình đồng thời
+#     with concurrent.futures.ThreadPoolExecutor() as executor:
+#         executor.submit(run_flask)
+#         executor.submit(run_discord)
 
 if __name__ == "__main__":
-    run_both()
+    bot.run(TOKEN)
