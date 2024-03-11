@@ -157,7 +157,8 @@ async def on_message(message):
     is_allowed_dm = allow_dm and is_dm_channel
     contains_trigger_word = any(word in message.content for word in trigger_words)
     is_bot_mentioned = bot.user.mentioned_in(message) and smart_mention and not message.mention_everyone
-    bot_name_in_message = bot.user.name.lower() in message.content.lower() and smart_mention
+    # bot_name_in_message = bot.user.name.lower() in message.content.lower() and smart_mention
+    bot_name_in_message = False
 
     if is_active_channel or is_allowed_dm or contains_trigger_word or is_bot_mentioned or is_replied or bot_name_in_message:
         if string_channel_id in active_channels:
