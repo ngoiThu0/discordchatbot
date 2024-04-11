@@ -251,6 +251,14 @@ async def ping(ctx):
     latency = bot.latency * 1000
     await ctx.send(f"{current_language['ping_msg']}{latency:.2f} ms")
 
+@bot.hybrid_command(name="eve", description="ping cho dui hihi..")
+async def eve(ctx, message: str):
+    allowed_mentions = discord.AllowedMentions(everyone=True)  # Nối các phần tử của args thành một chuỗi
+    if ctx.author.id == 841675628380946462:
+        await ctx.send(f"@everyone {message}", allowed_mentions=allowed_mentions)
+    else:
+        await ctx.send("ngu hihi")
+
 
 @bot.hybrid_command(name="changeusr", description=current_language["changeusr"])
 @commands.is_owner()
